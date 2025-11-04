@@ -1,8 +1,7 @@
 /**
- * Day Selector Island - Mount point for SearchScheduleSelector component
- * This island handles the interactive day selection in the hero section
- * Uses the full SearchScheduleSelector with drag-to-select and validation
+ * Day Selector Island - Placeholder
  */
-import SearchScheduleSelectorWrapper from '../components/SearchScheduleSelector/SearchScheduleSelectorWrapper.jsx';
 
-export default SearchScheduleSelectorWrapper;
+export default function DaySelectorPlaceholder() {
+  return null;
+}
