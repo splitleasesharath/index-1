@@ -9,6 +9,7 @@ import { createRoot } from 'react-dom/client';
 import Header from './islands/header.island.jsx';
 import Footer from './islands/footer.island.jsx';
 import DaySelector from './islands/day-selector.island.jsx';
+import SearchScheduleSelector from './islands/search-schedule-selector.island.jsx';
 
 /**
  * Mount a React island component
@@ -47,7 +48,7 @@ function initializeIslands() {
   mountIsland('[data-island="footer"]', Footer);
 
   // Mount DaySelector island
-  mountIsland('[data-island="day-selector"]', DaySelector);
+  mountIsland('[data-island="day-selector"]', SearchScheduleSelector);
 
   console.log('✅ All islands initialized');
 }
