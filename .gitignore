@@ -31,3 +31,6 @@ dist/
 
 # Project documentation
 major-milestones.txt
+
+# Redundant files
+Dump/
