@@ -1,8 +1,8 @@
 /**
- * DaySelector Component - Simplified version for hero section
- * Matches the existing Split Lease site styling
+ * DaySelector Component - Matches exact Split Lease structure
+ * Plain CSS classes, no styled-components
  */
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './DaySelector.css';
 
 const DAYS_OF_WEEK = [
@@ -19,6 +19,12 @@ const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frid
 
 export const DaySelector = () => {
   const [selectedDays, setSelectedDays] = useState(new Set([1, 2, 3, 4, 5])); // Default weeknight Mon-Fri
+  const selectedDaysRef = useRef(new Set([1, 2, 3, 4, 5]));
+
+  // Keep ref in sync
+  useEffect(() => {
+    selectedDaysRef.current = selectedDays;
+  }, [selectedDays]);
 
   /**
    * Toggle a day selection
@@ -77,14 +83,15 @@ export const DaySelector = () => {
    * Handle Explore Rentals button click
    */
   const handleExploreRentals = useCallback(() => {
-    const daysParam = Array.from(selectedDays)
+    const days = selectedDaysRef.current;
+    const daysParam = Array.from(days)
       .sort((a, b) => a - b)
       .map(d => d + 1)
       .join(', ');
 
     const url = `https://app.split.lease/search-split-lease?days-selected=${encodeURIComponent(daysParam)}&weekly-frequency=1`;
     window.open(url, '_blank');
-  }, [selectedDays]);
+  }, []);
 
   // Make handleExploreRentals available globally for the button onclick
   useEffect(() => {
