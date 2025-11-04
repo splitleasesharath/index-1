@@ -11,8 +11,10 @@
     "test:ui": "playwright test --ui"
   },
   "dependencies": {
+    "framer-motion": "^12.23.24",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "styled-components": "^6.1.19"
   },
   "devDependencies": {
     "@playwright/test": "^1.41.0",

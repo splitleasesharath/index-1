@@ -7,6 +7,7 @@ import { createRoot } from 'react-dom/client';
 
 // Import island components
 import Header from './islands/header.island.jsx';
+import Footer from './islands/footer.island.jsx';
 
 /**
  * Mount a React island component
@@ -40,6 +41,9 @@ function initializeIslands() {
 
   // Mount Header island
   mountIsland('[data-island="header"]', Header);
+
+  // Mount Footer island
+  mountIsland('[data-island="footer"]', Footer);
 
   console.log('✅ All islands initialized');
 }
