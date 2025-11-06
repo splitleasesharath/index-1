@@ -103,7 +103,16 @@ function NavDropdown({ title, mobileTitle, items }) {
             href={item.href}
             className={styles.dropdownItem}
             role="menuitem"
-            onClick={() => setIsOpen(false)}
+            onClick={(e) => {
+              // Special handling for "Explore Rentals" link
+              if (item.title === 'Explore Rentals' && window.selectedDays && window.selectedDays.length > 0) {
+                e.preventDefault();
+                const bubbleDays = window.selectedDays.map(day => day + 1);
+                window.location.href = `${item.href}?days-selected=${bubbleDays.join(',')}`;
+              } else {
+                setIsOpen(false);
+              }
+            }}
           >
             <span className={styles.dropdownTitle}>{item.title}</span>
             {item.desc && (

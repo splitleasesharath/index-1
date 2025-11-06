@@ -149,6 +149,15 @@ function Header() {
           <a
             href={EXTERNAL_URLS.SEARCH}
             className={styles.exploreRentalsBtn}
+            onClick={(e) => {
+              // If user has selected days, pass them as URL parameters
+              if (window.selectedDays && window.selectedDays.length > 0) {
+                e.preventDefault();
+                const bubbleDays = window.selectedDays.map(day => day + 1);
+                window.location.href = `${EXTERNAL_URLS.SEARCH}?days-selected=${bubbleDays.join(',')}`;
+              }
+              // Otherwise, let the default href take over (no parameters)
+            }}
           >
             Explore Rentals
           </a>

@@ -49,7 +49,16 @@ function MobileMenu({ hostItems, guestItems, isLoggedIn, username, onClose }) {
           <a
             href={EXTERNAL_URLS.SEARCH}
             className={styles.mobileMenuCta}
-            onClick={handleLinkClick}
+            onClick={(e) => {
+              // If user has selected days, pass them as URL parameters
+              if (window.selectedDays && window.selectedDays.length > 0) {
+                e.preventDefault();
+                const bubbleDays = window.selectedDays.map(day => day + 1);
+                window.location.href = `${EXTERNAL_URLS.SEARCH}?days-selected=${bubbleDays.join(',')}`;
+              } else {
+                handleLinkClick();
+              }
+            }}
           >
             Explore Rentals
           </a>

@@ -1863,23 +1863,27 @@ function updateURL() {
 }
 
 function exploreRentals() {
-    if (selectedDays.length === 0) {
+    // Get selected days from global state (updated by React island)
+    const currentSelectedDays = window.selectedDays || selectedDays || [];
+
+    if (currentSelectedDays.length === 0) {
         showToast('Please select at least one day');
         return;
     }
-    
+
     // Check if days are continuous before allowing exploration
-    if (!areDaysContinuous(selectedDays)) {
+    if (!areDaysContinuous(currentSelectedDays)) {
         showToast('Please select a continuous set of days');
         return;
     }
-    
+
     // Convert to 1-based indexing for Bubble (add 1 to each day)
-    const bubbleDays = selectedDays.map(day => day + 1);
-    
+    const bubbleDays = currentSelectedDays.map(day => day + 1);
+
     // Redirect with selected days using exact format
     const searchUrl = `https://app.split.lease/search?days-selected=${bubbleDays.join(',')}`;
-    
+
+    console.log('🚀 Redirecting to:', searchUrl);
     window.location.href = searchUrl;
 }
 
